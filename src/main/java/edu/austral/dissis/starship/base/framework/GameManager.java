@@ -1,6 +1,6 @@
 package edu.austral.dissis.starship.base.framework;
 
-import edu.austral.dissis.starship.CustomGameFramework;
+import edu.austral.dissis.starship.StarshipGame;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 
@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GameManager extends PApplet {
-    private final GameFramework gameFramework = new CustomGameFramework();
+    private final GameFramework gameFramework = new StarshipGame();
     private final Set<Integer> keySet = new HashSet<>();
 
     public void settings() {
