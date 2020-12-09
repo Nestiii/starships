@@ -23,8 +23,15 @@ public class DoubleWeapon extends Weapon {
     @Override
     public void shoot(Starship starship) {
         if(shouldShoot()){
-            Vector2 position1 = Vector2.vector(starship.position.getX() - 10, starship.position.getY() - (float) STARSHIP_HEIGHT/2 - 10);
-            Vector2 position2 = Vector2.vector(starship.position.getX() + 10, starship.position.getY() - (float) STARSHIP_HEIGHT/2 - 10);
+            Vector2 position1;
+            Vector2 position2;
+            if((int)starship.direction.getY() == 1) {
+                position1 = Vector2.vector(starship.position.getX() - 10, starship.position.getY() + (float) STARSHIP_HEIGHT/2 + 10);
+                position2 = Vector2.vector(starship.position.getX() + 10, starship.position.getY() + (float) STARSHIP_HEIGHT/2 + 10);
+            }else{
+                position1 = Vector2.vector(starship.position.getX() - 10, starship.position.getY() - (float) STARSHIP_HEIGHT/2 - 10);
+                position2 = Vector2.vector(starship.position.getX() + 10, starship.position.getY() - (float) STARSHIP_HEIGHT/2 - 10);
+            }
             Bullet bullet1 = getBullet().getNewBullet(position1, starship.direction);
             Bullet bullet2 = getBullet().getNewBullet(position2, starship.direction);
             GameRenderer.addToRender(bullet1);

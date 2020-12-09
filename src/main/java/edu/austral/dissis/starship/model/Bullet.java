@@ -22,6 +22,11 @@ public abstract class Bullet extends GameObject {
         this.shape = new Rectangle2D.Float(position.getX() - (float) BULLET_WIDTH/2, position.getY() - (float) BULLET_HEIGHT/2, BULLET_WIDTH, BULLET_HEIGHT);
     }
 
+    public void move(){
+        this.position = position.add(direction.multiply(speed));
+        moveShape();
+    }
+
     public int getDamage() {
         return damage;
     }

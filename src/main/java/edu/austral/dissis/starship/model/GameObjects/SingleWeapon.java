@@ -22,7 +22,12 @@ public class SingleWeapon extends Weapon {
     @Override
     public void shoot(Starship starship) {
         if(shouldShoot()){
-            Vector2 position = Vector2.vector(starship.position.getX(), starship.position.getY() - (float) STARSHIP_HEIGHT/2 - 10);
+            Vector2 position;
+            if((int)starship.direction.getY() == 1) {
+                position = Vector2.vector(starship.position.getX(), starship.position.getY() + (float) STARSHIP_HEIGHT/2 + 10);
+            }else{
+                position = Vector2.vector(starship.position.getX(), starship.position.getY() - (float) STARSHIP_HEIGHT/2 - 10);
+            }
             Bullet bullet = getBullet().getNewBullet(position, starship.direction);
             GameRenderer.addToRender(bullet);
             GameController.addCollisionable(bullet);

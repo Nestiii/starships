@@ -73,7 +73,7 @@ public class GameController{
 
     public static void updateCollisionables(){
         for (Collisionable<GameObject> collisionable : collisionables) {
-            if (collisionable instanceof Bullet) ((Bullet) collisionable).moveForward(((Bullet) collisionable).getSpeed());
+            if (collisionable instanceof Bullet) ((Bullet) collisionable).move();
             else if (collisionable instanceof Asteroid) ((Asteroid) collisionable).move();
         }
         collisionables.forEach(GameController::checkAlive);
