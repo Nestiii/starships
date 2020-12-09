@@ -22,6 +22,10 @@ public class Starship extends GameObject {
         this.weapon = new SingleWeapon(new DefaultBullet(position, direction, player));
     }
 
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
     @Override
     public void moveForward(float speed) {
         this.position = position.add(Vector2.vector(0, -1).multiply(speed));

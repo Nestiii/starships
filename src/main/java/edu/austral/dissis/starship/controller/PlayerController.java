@@ -14,16 +14,18 @@ public class PlayerController implements KeyHandler{
     private final Player player;
     private final Starship starship;
     private final Map<Integer, Action> keyMap;
+    private boolean lost;
 
     public PlayerController(Map<Integer, Action> keyMap, Player player, Starship starship){
         this.player = player;
         this.starship = starship;
         this.keyMap = keyMap;
+        this.lost = false;
     }
 
     @Override
     public void handleKeyPress(int keyCode) {
-        if(keyMap.containsKey(keyCode)){
+        if(keyMap.containsKey(keyCode) && !lost){
             switch (keyMap.get(keyCode)){
                 case MOVE_FORWARD:
                     if (canMove(starship, Vector2.vector(0, -1))) starship.moveForward(STARSHIP_SPEED);
@@ -57,12 +59,23 @@ public class PlayerController implements KeyHandler{
     }
 
     public void updatePlayer(){
-        if (player.getPoints() > 1000) starship.changeWeapon(new DoubleWeapon(new DefaultBullet(starship.getPosition(), starship.getDirection(), player)));
-        if (player.getPoints() > 2000) starship.changeWeapon(new SingleWeapon(new LaserBullet(starship.getPosition(), starship.getDirection(), player)));
-        if (player.getPoints() > 3000) starship.changeWeapon(new DoubleWeapon(new LaserBullet(starship.getPosition(), starship.getDirection(), player)));
+        if (player.getPoints() > 1000 && player.getPoints() < 2000 && !(starship.getWeapon() instanceof DoubleWeapon))
+            starship.changeWeapon(new DoubleWeapon(new DefaultBullet(starship.getPosition(), starship.getDirection(), player)));
+        if (player.getPoints() > 2000 && player.getPoints() < 3000 && !(starship.getWeapon() instanceof SingleWeapon))
+            starship.changeWeapon(new SingleWeapon(new LaserBullet(starship.getPosition(), starship.getDirection(), player)));
+        if (player.getPoints() > 3000 && !(starship.getWeapon() instanceof DoubleWeapon))
+            starship.changeWeapon(new DoubleWeapon(new LaserBullet(starship.getPosition(), starship.getDirection(), player)));
     }
 
     public void updatePlayerPoints(int points){
         player.updatePoints(points);
+    }
+
+    public int getPoints(){
+        return player.getPoints();
+    }
+
+    public void gameOver(){
+        this.lost = true;
     }
 }

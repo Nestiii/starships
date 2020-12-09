@@ -34,12 +34,14 @@ public class StarshipGame implements GameFramework {
 
     @Override
     public void draw(PGraphics graphics, float timeSinceLastDraw, Set<Integer> keySet) {
-        gameController.spawnAsteroid();
-        GameController.updateCollisionables();
         gameRenderer.render(graphics);
-        gameController.handleKeyPress(keySet);
-        GameController.checkCollisions();
-        gameController.updatePLayers();
+        if (!gameController.isGameOver()){
+            gameController.spawnAsteroid();
+            GameController.updateCollisionables();
+            gameController.handleKeyPress(keySet);
+            GameController.checkCollisions();
+            gameController.updatePLayers();
+        }
     }
 
     @Override

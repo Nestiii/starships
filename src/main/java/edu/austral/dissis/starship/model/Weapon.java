@@ -21,7 +21,6 @@ public abstract class Weapon {
     public abstract void shoot(Starship starship);
 
     public boolean shouldShoot(){
-        if(lastBullet == 0) return true;
         return System.currentTimeMillis() - lastBullet > 80;
     }
 }

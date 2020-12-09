@@ -89,7 +89,6 @@ public abstract class Bullet extends GameObject{
         asteroid.updateHealth(asteroid.getHealthPoints() - damage);
         if (asteroid.getHealthPoints() <= 0){
             player.updatePoints(asteroid.getPoints());
-            System.out.println(player.getPoints());
         }
     }
 }

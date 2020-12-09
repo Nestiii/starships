@@ -46,6 +46,10 @@ public abstract class Renderer {
         graphics.text("Points: " + playerStats.player.getPoints() + "\n" + "Life: " + playerStats.starship.getHealthPoints(), 20 ,50);
     }
 
+    public void draw(PGraphics graphics, GameOver gameOver){
+        graphics.text("GAME OVER \nTotal Points: " + gameOver.getPoints(), 350 ,400);
+    }
+
     private void draw(PGraphics graphics, GameObject object, int width, int height, PImage image){
         Vector2 position = object.getPosition();
         float angle = object.getDirection().rotate(PConstants.PI/2).getAngle();

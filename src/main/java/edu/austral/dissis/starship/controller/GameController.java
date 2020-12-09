@@ -23,8 +23,10 @@ public class GameController{
     private static final List<Collisionable<GameObject>> collisionables = new ArrayList<>();
     private static final List<Collisionable<GameObject>> toRemoveCollisionables = new ArrayList<>();
     private final PlayerController playerAController;
+    public boolean gameOver;
 
     public GameController(){
+        gameOver = false;
         Player playerA = new Player("Player A");
         Starship starshipA = new Starship(Vector2.vector(400, 400), Vector2.vector(0, -1), playerA);
         PlayerStats playerStatsA = new PlayerStats(starshipA, playerA);
@@ -58,6 +60,7 @@ public class GameController{
 
     public void updatePLayers(){
         playerAController.updatePlayer();
+        if (playerAController.getStarship().getHealthPoints() <= 0) gameOver();
     }
 
     private static List<Collisionable> asCollisionables(){
@@ -87,5 +90,17 @@ public class GameController{
             GameRenderer.removeToRender((Rendereable) toRemoveCollisionable);
         }
         toRemoveCollisionables.clear();
+    }
+
+    public boolean isGameOver(){
+        return gameOver;
+    }
+
+    public void gameOver() {
+        toRemoveCollisionables.clear();
+        collisionables.clear();
+        playerAController.gameOver();
+        GameRenderer.gameOver(playerAController.getPoints());
+        gameOver = true;
     }
 }
