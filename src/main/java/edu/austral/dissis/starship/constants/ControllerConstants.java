@@ -13,8 +13,17 @@ public class ControllerConstants {
             put(40, Action.MOVE_BACKWARDS);
             put(39, Action.MOVE_RIGHT);
             put(37, Action.MOVE_LEFT);
-            put(32, Action.SHOOT);
+            put(16, Action.SHOOT);
         }
     };
 
+    public static Map<Integer, Action> KET_SET_B = new HashMap<Integer, Action>() {
+        {
+            put(87, Action.MOVE_FORWARD);
+            put(83, Action.MOVE_BACKWARDS);
+            put(68, Action.MOVE_RIGHT);
+            put(65, Action.MOVE_LEFT);
+            put(32, Action.SHOOT);
+        }
+    };
 }

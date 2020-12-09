@@ -43,11 +43,21 @@ public abstract class Renderer {
     }
 
     public void draw(PGraphics graphics, PlayerStats playerStats){
-        graphics.text("Points: " + playerStats.player.getPoints() + "\n" + "Life: " + playerStats.starship.getHealthPoints(), 20 ,50);
+        graphics.text("Points: " + playerStats.player.getPoints() + "\n" + "Life: " + playerStats.starship.getHealthPoints(), playerStats.position.getX() ,playerStats.position.getY());
     }
 
-    public void draw(PGraphics graphics, GameOver gameOver){
-        graphics.text("GAME OVER \nTotal Points: " + gameOver.getPoints(), 350 ,400);
+    public void draw(PGraphics graphics, SingleGameOver gameOver){
+        graphics.text("GAME OVER \n\nPlayer: " + gameOver.getPlayer().getName() + "\nTotal Points: " + gameOver.getPlayer().getPoints(), 350,400);
+    }
+
+    public void draw(PGraphics graphics, MultipleGameOver gameOver){
+        graphics.text(
+                "GAME OVER " +
+                        "\n\nPlayer 1: " + gameOver.getPlayerA().getName() + "\nTotal Points: " + gameOver.getPlayerA().getPoints() +
+                        "\n\nPlayer 2: " + gameOver.getPlayerB().getName() + "\nTotal Points: " + gameOver.getPlayerB().getPoints(),
+                350,
+                350
+        );
     }
 
     private void draw(PGraphics graphics, GameObject object, int width, int height, PImage image){

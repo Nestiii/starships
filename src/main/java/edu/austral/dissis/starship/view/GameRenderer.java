@@ -1,5 +1,6 @@
 package edu.austral.dissis.starship.view;
 
+import edu.austral.dissis.starship.model.Player;
 import processing.core.PGraphics;
 
 import java.util.ArrayList;
@@ -26,8 +27,13 @@ public class GameRenderer {
         for (Rendereable rendereable : toRender) rendereable.draw(graphics, renderer);
     }
 
-    public static void gameOver(int points){
+    public static void singleGameOver(Player player){
         toRender.clear();
-        addToRender(new GameOver(points));
+        addToRender(new SingleGameOver(player));
+    }
+
+    public static void multipleGameOver(Player playerA, Player playerB){
+        toRender.clear();
+        addToRender(new MultipleGameOver(playerA, playerB));
     }
 }

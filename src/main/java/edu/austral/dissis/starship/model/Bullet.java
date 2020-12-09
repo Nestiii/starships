@@ -25,6 +25,8 @@ public abstract class Bullet extends GameObject{
         return damage;
     }
 
+    public Player getPlayer(){ return  player; }
+
     public float getSpeed() {
         return speed;
     }

@@ -17,4 +17,8 @@ public class Player {
     public int getPoints(){
         return points;
     }
+
+    public String getName() {
+        return name;
+    }
 }

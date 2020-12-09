@@ -9,6 +9,7 @@ import edu.austral.dissis.starship.view.PlayerStats;
 import edu.austral.dissis.starship.view.Rendereable;
 
 import static edu.austral.dissis.starship.constants.ControllerConstants.KET_SET_A;
+import static edu.austral.dissis.starship.constants.ControllerConstants.KET_SET_B;
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;
 
 import java.util.ArrayList;
@@ -22,22 +23,44 @@ public class GameController{
     private long lastAsteroid = 0;
     private static final List<Collisionable<GameObject>> collisionables = new ArrayList<>();
     private static final List<Collisionable<GameObject>> toRemoveCollisionables = new ArrayList<>();
-    private final PlayerController playerAController;
+    private PlayerController playerAController;
+    private PlayerController playerBController;
     public boolean gameOver;
+    private final GameMode gameMode;
 
-    public GameController(){
+    public GameController(GameMode gameMode){
+        this.gameMode = gameMode;
         gameOver = false;
-        Player playerA = new Player("Player A");
-        Starship starshipA = new Starship(Vector2.vector(400, 400), Vector2.vector(0, -1), playerA);
-        PlayerStats playerStatsA = new PlayerStats(starshipA, playerA);
-        GameRenderer.addToRender(playerStatsA);
-        GameRenderer.addToRender(starshipA);
-        addCollisionable(starshipA);
-        playerAController = new PlayerController(KET_SET_A, playerA, starshipA);
+        if (gameMode == GameMode.SINGLE_PLAYER){
+            Player playerA = new Player("Player A");
+            Starship starshipA = new Starship(Vector2.vector(400, MAP_HEIGHT-50), Vector2.vector(0, -1), playerA);
+            PlayerStats playerStatsA = new PlayerStats(starshipA, playerA, Vector2.vector(20, MAP_HEIGHT-50));
+            GameRenderer.addToRender(playerStatsA);
+            GameRenderer.addToRender(starshipA);
+            addCollisionable(starshipA);
+            playerAController = new PlayerController(KET_SET_A, playerA, starshipA);
+        } else if (gameMode == GameMode.MULTI_PLAYER){
+            Player playerA = new Player("Player A");
+            Player playerB = new Player("Player B");
+            Starship starshipA = new Starship(Vector2.vector(400, MAP_HEIGHT-50), Vector2.vector(0, -1), playerA);
+            Starship starshipB = new Starship(Vector2.vector(400, 50), Vector2.vector(0, 1), playerB);
+            PlayerStats playerStatsA = new PlayerStats(starshipA, playerA, Vector2.vector(20, MAP_HEIGHT-50));
+            PlayerStats playerStatsB = new PlayerStats(starshipB, playerB, Vector2.vector(20, 50));
+            GameRenderer.addToRender(playerStatsA);
+            GameRenderer.addToRender(playerStatsB);
+            GameRenderer.addToRender(starshipA);
+            GameRenderer.addToRender(starshipB);
+            addCollisionable(starshipA);
+            addCollisionable(starshipB);
+            playerAController = new PlayerController(KET_SET_A, playerA, starshipA);
+            playerBController = new PlayerController(KET_SET_B, playerB, starshipB);
+        }
     }
 
     public void handleKeyPress(Set<Integer> keySet){
         keySet.forEach(playerAController::handleKeyPress);
+        if(gameMode == GameMode.MULTI_PLAYER)
+            keySet.forEach(playerBController::handleKeyPress);
     }
 
     public static void addCollisionable(Collisionable<GameObject> collisionable){
@@ -61,6 +84,10 @@ public class GameController{
     public void updatePLayers(){
         playerAController.updatePlayer();
         if (playerAController.getStarship().getHealthPoints() <= 0) gameOver();
+        if(gameMode == GameMode.MULTI_PLAYER){
+            playerBController.updatePlayer();
+            if (playerBController.getStarship().getHealthPoints() <= 0) gameOver();
+        }
     }
 
     private static List<Collisionable> asCollisionables(){
@@ -99,8 +126,14 @@ public class GameController{
     public void gameOver() {
         toRemoveCollisionables.clear();
         collisionables.clear();
-        playerAController.gameOver();
-        GameRenderer.gameOver(playerAController.getPoints());
+        if (gameMode == GameMode.MULTI_PLAYER){
+            playerAController.gameOver();
+            playerBController.gameOver();
+            GameRenderer.multipleGameOver(playerAController.getPlayer(), playerBController.getPlayer());
+        } else {
+            playerAController.gameOver();
+            GameRenderer.singleGameOver(playerAController.getPlayer());
+        }
         gameOver = true;
     }
 }

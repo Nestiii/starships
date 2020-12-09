@@ -71,6 +71,10 @@ public class PlayerController implements KeyHandler{
         player.updatePoints(points);
     }
 
+    public Player getPlayer(){
+        return player;
+    }
+
     public int getPoints(){
         return player.getPoints();
     }

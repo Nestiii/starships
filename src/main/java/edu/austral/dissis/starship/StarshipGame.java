@@ -1,6 +1,7 @@
 package edu.austral.dissis.starship;
 
 import edu.austral.dissis.starship.controller.GameController;
+import edu.austral.dissis.starship.controller.GameMode;
 import edu.austral.dissis.starship.view.GameRenderer;
 import edu.austral.dissis.starship.view.DefaultThemeRenderer;
 import edu.austral.dissis.starship.base.framework.GameFramework;
@@ -23,7 +24,7 @@ public class StarshipGame implements GameFramework {
     public StarshipGame() {
         renderer = new DefaultThemeRenderer();
         gameRenderer = new GameRenderer(renderer);
-        gameController = new GameController();
+        gameController = new GameController(GameMode.MULTI_PLAYER);
     }
 
     @Override
