@@ -4,7 +4,7 @@ import edu.austral.dissis.starship.controller.GameController;
 import edu.austral.dissis.starship.controller.PlayerController;
 import edu.austral.dissis.starship.model.Player;
 import edu.austral.dissis.starship.view.GameRenderer;
-import edu.austral.dissis.starship.view.LightThemeRenderer;
+import edu.austral.dissis.starship.view.DefaultThemeRenderer;
 import edu.austral.dissis.starship.model.Starship;
 import edu.austral.dissis.starship.base.framework.GameFramework;
 import edu.austral.dissis.starship.base.framework.ImageLoader;
@@ -27,10 +27,10 @@ public class StarshipGame implements GameFramework {
     private final Renderer renderer;
 
     public StarshipGame() {
-        renderer = new LightThemeRenderer();
+        renderer = new DefaultThemeRenderer();
         gameRenderer = new GameRenderer(renderer);
         gameController = new GameController();
-        Starship testStarship = new Starship(Vector2.vector(400,400), Vector2.vector(0, -1), 200);
+        Starship testStarship = new Starship(Vector2.vector(400,400), Vector2.vector(0, -1));
         GameRenderer.addToRender(testStarship);
         Player testPlayer = new Player("test", 0);
         playerA = new PlayerController(KET_SET_A, testPlayer, testStarship);
@@ -45,9 +45,11 @@ public class StarshipGame implements GameFramework {
 
     @Override
     public void draw(PGraphics graphics, float timeSinceLastDraw, Set<Integer> keySet) {
+        gameController.spawnAsteroid();
         GameController.updateCollisionables();
         gameRenderer.render(graphics);
         keySet.forEach(playerA::handleKeyPress);
+        GameController.checkCollisions();
     }
 
     @Override

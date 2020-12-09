@@ -1,7 +1,6 @@
 package edu.austral.dissis.starship.view;
 
-import edu.austral.dissis.starship.model.LaserBullet;
-import edu.austral.dissis.starship.model.Starship;
+import edu.austral.dissis.starship.model.*;
 import edu.austral.dissis.starship.base.framework.ImageLoader;
 import edu.austral.dissis.starship.base.vector.Vector2;
 import processing.core.PConstants;
@@ -14,24 +13,37 @@ public abstract class Renderer {
 
     PImage starshipImage;
     PImage laserBulletImage;
+    PImage smallAsteroidImage;
+    PImage mediumAsteroidImage;
+    PImage bigAsteroidImage;
 
     public void draw(PGraphics graphics, Starship starship){
-        Vector2 position = starship.getPosition();
-        float angle = starship.getDirection().rotate(PConstants.PI/2).getAngle();
-        graphics.pushMatrix();
-        graphics.translate(position.getX(), position.getY());
-        graphics.rotate(angle);
-        graphics.image(starshipImage, STARSHIP_WIDTH/-2f, STARSHIP_HEIGHT/-2f);
-        graphics.popMatrix();
+        draw(graphics, starship, STARSHIP_WIDTH, STARSHIP_HEIGHT, starshipImage);
     }
 
     public void draw(PGraphics graphics, LaserBullet laserBullet){
-        Vector2 position = laserBullet.getPosition();
-        float angle = laserBullet.getDirection().rotate(PConstants.PI/2).getAngle();
+        draw(graphics, laserBullet, BULLET_WIDTH, BULLET_HEIGHT, laserBulletImage);
+    }
+
+    public void draw(PGraphics graphics, SmallAsteroid smallAsteroid){
+        draw(graphics, smallAsteroid, SMALL_ASTEROID_WIDTH, SMALL_ASTEROID_HEIGHT, smallAsteroidImage);
+    }
+
+    public void draw(PGraphics graphics, MediumAsteroid mediumAsteroid){
+        draw(graphics, mediumAsteroid, MEDIUM_ASTEROID_WIDTH, MEDIUM_ASTEROID_HEIGHT, mediumAsteroidImage);
+    }
+
+    public void draw(PGraphics graphics, BigAsteroid bigAsteroid){
+        draw(graphics, bigAsteroid, BIG_ASTEROID_WIDTH, BIG_ASTEROID_HEIGHT, bigAsteroidImage);
+    }
+
+    private void draw(PGraphics graphics, GameObject object, int width, int height, PImage image){
+        Vector2 position = object.getPosition();
+        float angle = object.getDirection().rotate(PConstants.PI/2).getAngle();
         graphics.pushMatrix();
         graphics.translate(position.getX(), position.getY());
         graphics.rotate(angle);
-        graphics.image(laserBulletImage, BULLET_WIDTH/-2f, BULLET_HEIGHT/-2f);
+        graphics.image(image, width/-2f, height/-2f);
         graphics.popMatrix();
     }
 

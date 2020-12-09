@@ -8,16 +8,18 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;
+import static edu.austral.dissis.starship.constants.MoveConstants.*;
 import static edu.austral.dissis.starship.constants.StatsConstants.*;
 
 public class Starship extends GameObject {
 
     private Weapon weapon;
 
-    public Starship (Vector2 position, Vector2 direction, int healthPoints){
-        super(position, direction.asUnitary(), healthPoints);
-        this.shape = new Rectangle2D.Float(position.getX(), position.getY(), STARSHIP_WIDTH, STARSHIP_HEIGHT);
-        weapon = new SingleWeapon(new LaserBullet(position, direction, LASER_BULLET_HP), 10);
+    public Starship (Vector2 position, Vector2 direction){
+        super(position, direction.asUnitary(), STARSHIP_HP);
+        this.shape = new Rectangle2D.Float(position.getX()- (float) STARSHIP_WIDTH/2, position.getY() - (float) STARSHIP_HEIGHT/2, STARSHIP_WIDTH, STARSHIP_HEIGHT);
+        weapon = new SingleWeapon(new LaserBullet(position, direction), 10);
+        this.speed = STARSHIP_SPEED;
     }
 
     @Override
@@ -45,11 +47,13 @@ public class Starship extends GameObject {
     }
 
     private void moveShape() {
-        shape = new Rectangle2D.Float(position.getX(), position.getY(), STARSHIP_WIDTH, STARSHIP_HEIGHT);
+        shape = new Rectangle2D.Float(position.getX()- (float) STARSHIP_WIDTH/2, position.getY() - (float) STARSHIP_HEIGHT/2, STARSHIP_WIDTH, STARSHIP_HEIGHT);
     }
 
     @Override
-    public void rotate(float degrees) {}
+    public void rotate(float degrees) {
+        this.direction = direction.rotate(degrees);
+    }
 
     public void shoot() {
         weapon.shoot(this);
@@ -67,6 +71,16 @@ public class Starship extends GameObject {
     @Override
     public void collisionedWith(GameObject collisionable) {
         collisionable.collisionedWithStarship(this);
+    }
+
+    @Override
+    public void collisionedWithBullet(Bullet bullet) {
+        bullet.updateHealth(0);
+    }
+
+    @Override
+    public void collisionedWithAsteroid(Asteroid asteroid) {
+        asteroid.updateHealth(0);
     }
 
     @Override

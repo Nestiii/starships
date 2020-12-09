@@ -12,6 +12,7 @@ public abstract class GameObject implements Movable<GameObject>, Collisionable<G
     Vector2 direction;
     int healthPoints;
     Shape shape;
+    float speed;
 
     GameObject (Vector2 position, Vector2 direction, int healthPoints){
         this.position = position;
@@ -20,6 +21,10 @@ public abstract class GameObject implements Movable<GameObject>, Collisionable<G
     }
 
     public abstract void collisionedWithStarship(Starship starship);
+
+    public abstract void collisionedWithBullet(Bullet bullet);
+
+    public abstract void collisionedWithAsteroid(Asteroid asteroid);
 
     public Vector2 getPosition(){
         return position;
@@ -32,4 +37,10 @@ public abstract class GameObject implements Movable<GameObject>, Collisionable<G
     public int getHealthPoints(){
         return healthPoints;
     }
+
+    public void updateHealth(int healthPoints){
+        this.healthPoints = healthPoints;
+    }
+
+    public float getSpeed() { return speed; }
 }
