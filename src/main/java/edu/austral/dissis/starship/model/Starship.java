@@ -1,6 +1,7 @@
 package edu.austral.dissis.starship.model;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.model.GameObjects.*;
 import edu.austral.dissis.starship.view.Renderer;
 import processing.core.PGraphics;
 
@@ -88,7 +89,9 @@ public class Starship extends GameObject {
     }
 
     @Override
-    public void collisionedWithStarship(Starship starship) {}
+    public void collisionedWithStarship(Starship starship) {
+        starship.updateHealth(0);
+    }
 
     @Override
     public void draw(PGraphics graphics, Renderer renderer) {

@@ -1,9 +1,11 @@
-package edu.austral.dissis.starship.view;
+package edu.austral.dissis.starship.view.UI;
 
-import edu.austral.dissis.starship.model.Player;
+import edu.austral.dissis.starship.model.GameObjects.Player;
+import edu.austral.dissis.starship.view.Rendereable;
+import edu.austral.dissis.starship.view.Renderer;
 import processing.core.PGraphics;
 
-public class SingleGameOver implements Rendereable{
+public class SingleGameOver implements Rendereable {
 
     private final Player player;
 

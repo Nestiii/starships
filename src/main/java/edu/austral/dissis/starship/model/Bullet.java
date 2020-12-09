@@ -1,17 +1,18 @@
 package edu.austral.dissis.starship.model;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.model.GameObjects.Player;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;
 
-public abstract class Bullet extends GameObject{
+public abstract class Bullet extends GameObject {
 
     private final int damage;
     private final float speed;
-    final Player player;
+    public final Player player;
 
     public Bullet(Vector2 position, Vector2 direction, int healthPoints, int damage, float speed, Player player) {
         super(position, direction, healthPoints);

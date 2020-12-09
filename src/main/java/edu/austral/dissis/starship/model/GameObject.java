@@ -8,13 +8,13 @@ import java.awt.*;
 
 public abstract class GameObject implements Movable<GameObject>, Collisionable<GameObject>, Rendereable {
 
-    Vector2 position;
-    Vector2 direction;
-    int healthPoints;
-    Shape shape;
-    float speed;
+    public Vector2 position;
+    public Vector2 direction;
+    public int healthPoints;
+    public Shape shape;
+    public float speed;
 
-    GameObject (Vector2 position, Vector2 direction, int healthPoints){
+    public GameObject (Vector2 position, Vector2 direction, int healthPoints){
         this.position = position;
         this.direction = direction;
         this.healthPoints = healthPoints;

@@ -1,6 +1,7 @@
-package edu.austral.dissis.starship.view;
+package edu.austral.dissis.starship.view.Renderers;
 
 import edu.austral.dissis.starship.base.framework.ImageLoader;
+import edu.austral.dissis.starship.view.Renderer;
 
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;
 

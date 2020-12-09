@@ -1,6 +1,7 @@
-package edu.austral.dissis.starship.model;
+package edu.austral.dissis.starship.model.GameObjects;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.model.Asteroid;
 import edu.austral.dissis.starship.view.Renderer;
 import processing.core.PGraphics;
 
@@ -8,7 +9,7 @@ import static edu.austral.dissis.starship.constants.MoveConstants.MEDIUM_ASTEROI
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;
 import static edu.austral.dissis.starship.constants.StatsConstants.*;
 
-public class MediumAsteroid extends Asteroid{
+public class MediumAsteroid extends Asteroid {
 
     public MediumAsteroid(Vector2 position, Vector2 direction){
         super(

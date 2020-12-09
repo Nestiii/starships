@@ -1,15 +1,17 @@
-package edu.austral.dissis.starship.view;
+package edu.austral.dissis.starship.view.UI;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.model.Player;
+import edu.austral.dissis.starship.model.GameObjects.Player;
 import edu.austral.dissis.starship.model.Starship;
+import edu.austral.dissis.starship.view.Rendereable;
+import edu.austral.dissis.starship.view.Renderer;
 import processing.core.PGraphics;
 
-public class PlayerStats implements Rendereable{
+public class PlayerStats implements Rendereable {
 
-    final Starship starship;
-    final Player player;
-    final Vector2 position;
+    public final Starship starship;
+    public final Player player;
+    public final Vector2 position;
 
     public PlayerStats (Starship starship, Player player, Vector2 position){
         this.starship = starship;

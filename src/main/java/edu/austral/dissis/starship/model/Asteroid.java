@@ -5,7 +5,7 @@ import edu.austral.dissis.starship.base.vector.Vector2;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public abstract class Asteroid extends GameObject{
+public abstract class Asteroid extends GameObject {
 
     private final float speed;
     private final int width, height, damage, points;

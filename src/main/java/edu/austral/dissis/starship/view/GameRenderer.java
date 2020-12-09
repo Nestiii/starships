@@ -1,6 +1,8 @@
 package edu.austral.dissis.starship.view;
 
-import edu.austral.dissis.starship.model.Player;
+import edu.austral.dissis.starship.model.GameObjects.Player;
+import edu.austral.dissis.starship.view.UI.MultipleGameOver;
+import edu.austral.dissis.starship.view.UI.SingleGameOver;
 import processing.core.PGraphics;
 
 import java.util.ArrayList;

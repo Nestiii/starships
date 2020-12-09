@@ -2,9 +2,9 @@ package edu.austral.dissis.starship.controller;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
 import edu.austral.dissis.starship.model.Asteroid;
-import edu.austral.dissis.starship.model.BigAsteroid;
-import edu.austral.dissis.starship.model.MediumAsteroid;
-import edu.austral.dissis.starship.model.SmallAsteroid;
+import edu.austral.dissis.starship.model.GameObjects.BigAsteroid;
+import edu.austral.dissis.starship.model.GameObjects.MediumAsteroid;
+import edu.austral.dissis.starship.model.GameObjects.SmallAsteroid;
 import edu.austral.dissis.starship.view.GameRenderer;
 
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;

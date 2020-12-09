@@ -1,9 +1,9 @@
 package edu.austral.dissis.starship;
 
 import edu.austral.dissis.starship.controller.GameController;
-import edu.austral.dissis.starship.controller.GameMode;
+import edu.austral.dissis.starship.controller.Enums.GameMode;
 import edu.austral.dissis.starship.view.GameRenderer;
-import edu.austral.dissis.starship.view.DefaultThemeRenderer;
+import edu.austral.dissis.starship.view.Renderers.DefaultThemeRenderer;
 import edu.austral.dissis.starship.base.framework.GameFramework;
 import edu.austral.dissis.starship.base.framework.ImageLoader;
 import edu.austral.dissis.starship.base.framework.WindowSettings;

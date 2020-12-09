@@ -1,7 +1,9 @@
 package edu.austral.dissis.starship.controller;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.controller.Enums.Action;
 import edu.austral.dissis.starship.model.*;
+import edu.austral.dissis.starship.model.GameObjects.*;
 
 import java.util.Map;
 

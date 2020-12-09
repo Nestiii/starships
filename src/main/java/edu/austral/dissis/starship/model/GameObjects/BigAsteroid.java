@@ -1,7 +1,7 @@
-package edu.austral.dissis.starship.model;
+package edu.austral.dissis.starship.model.GameObjects;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.controller.GameController;
+import edu.austral.dissis.starship.model.Asteroid;
 import edu.austral.dissis.starship.view.Renderer;
 import processing.core.PGraphics;
 
@@ -9,7 +9,7 @@ import static edu.austral.dissis.starship.constants.MoveConstants.BIG_ASTEROID_S
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;
 import static edu.austral.dissis.starship.constants.StatsConstants.*;
 
-public class BigAsteroid extends Asteroid{
+public class BigAsteroid extends Asteroid {
 
     public BigAsteroid(Vector2 position, Vector2 direction){
         super(

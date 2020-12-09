@@ -1,6 +1,6 @@
 package edu.austral.dissis.starship.constants;
 
-import edu.austral.dissis.starship.controller.Action;
+import edu.austral.dissis.starship.controller.Enums.Action;
 
 import java.util.HashMap;
 import java.util.Map;

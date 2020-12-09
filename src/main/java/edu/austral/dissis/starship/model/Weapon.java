@@ -3,7 +3,7 @@ package edu.austral.dissis.starship.model;
 public abstract class Weapon {
 
     private Bullet bullet;
-    long lastBullet;
+    public long lastBullet;
 
     public Weapon(Bullet bullet){
         this.bullet = bullet;

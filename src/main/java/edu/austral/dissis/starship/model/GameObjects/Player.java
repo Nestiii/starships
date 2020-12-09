@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship.model;
+package edu.austral.dissis.starship.model.GameObjects;
 
 public class Player {
 

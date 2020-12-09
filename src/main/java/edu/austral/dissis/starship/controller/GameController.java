@@ -3,9 +3,13 @@ package edu.austral.dissis.starship.controller;
 import edu.austral.dissis.starship.base.collision.CollisionEngine;
 import edu.austral.dissis.starship.base.collision.Collisionable;
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.controller.Enums.GameMode;
 import edu.austral.dissis.starship.model.*;
+import edu.austral.dissis.starship.model.Asteroid;
+import edu.austral.dissis.starship.model.Bullet;
+import edu.austral.dissis.starship.model.GameObjects.Player;
 import edu.austral.dissis.starship.view.GameRenderer;
-import edu.austral.dissis.starship.view.PlayerStats;
+import edu.austral.dissis.starship.view.UI.PlayerStats;
 import edu.austral.dissis.starship.view.Rendereable;
 
 import static edu.austral.dissis.starship.constants.ControllerConstants.KET_SET_A;

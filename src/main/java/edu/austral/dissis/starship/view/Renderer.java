@@ -3,6 +3,10 @@ package edu.austral.dissis.starship.view;
 import edu.austral.dissis.starship.model.*;
 import edu.austral.dissis.starship.base.framework.ImageLoader;
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.model.GameObjects.*;
+import edu.austral.dissis.starship.view.UI.MultipleGameOver;
+import edu.austral.dissis.starship.view.UI.PlayerStats;
+import edu.austral.dissis.starship.view.UI.SingleGameOver;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 import processing.core.PImage;
@@ -11,12 +15,12 @@ import static edu.austral.dissis.starship.constants.ShapeConstants.*;
 
 public abstract class Renderer {
 
-    PImage starshipImage;
-    PImage laserBulletImage;
-    PImage defaultBulletImage;
-    PImage smallAsteroidImage;
-    PImage mediumAsteroidImage;
-    PImage bigAsteroidImage;
+    public PImage starshipImage;
+    public PImage laserBulletImage;
+    public PImage defaultBulletImage;
+    public PImage smallAsteroidImage;
+    public PImage mediumAsteroidImage;
+    public PImage bigAsteroidImage;
 
     public void draw(PGraphics graphics, Starship starship){
         draw(graphics, starship, STARSHIP_WIDTH, STARSHIP_HEIGHT, starshipImage);
