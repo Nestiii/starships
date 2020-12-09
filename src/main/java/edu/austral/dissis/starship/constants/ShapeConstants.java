@@ -8,8 +8,8 @@ public class ShapeConstants {
     public static int STARSHIP_HEIGHT = 60;
     public static int STARSHIP_WIDTH = 60;
 
-    public static int BULLET_HEIGHT = 10;
-    public static int BULLET_WIDTH = 5;
+    public static int BULLET_HEIGHT = 20;
+    public static int BULLET_WIDTH = 10;
 
     public static int SMALL_ASTEROID_HEIGHT = 60;
     public static int SMALL_ASTEROID_WIDTH = 60;

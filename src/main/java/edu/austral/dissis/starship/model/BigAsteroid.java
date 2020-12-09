@@ -19,7 +19,8 @@ public class BigAsteroid extends Asteroid{
                 BIG_ASTEROID_SPEED,
                 BIG_ASTEROID_WIDTH,
                 BIG_ASTEROID_HEIGHT,
-                BIG_ASTEROID_DMG
+                BIG_ASTEROID_DMG,
+                BIG_ASTEROID_POINTS
         );
     }
 

@@ -18,15 +18,10 @@ public class MediumAsteroid extends Asteroid{
                 MEDIUM_ASTEROID_SPEED,
                 MEDIUM_ASTEROID_WIDTH,
                 MEDIUM_ASTEROID_HEIGHT,
-                MEDIUM_ASTEROID_DMG
+                MEDIUM_ASTEROID_DMG,
+                MEDIUM_ASTEROID_POINTS
         );
     }
-
-    @Override
-    public void collisionedWithStarship(Starship starship) {}
-
-    @Override
-    public void collisionedWith(GameObject collisionable) {}
 
     @Override
     public void draw(PGraphics graphics, Renderer renderer) {

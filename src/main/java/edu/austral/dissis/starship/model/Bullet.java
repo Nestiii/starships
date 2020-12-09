@@ -11,12 +11,14 @@ public abstract class Bullet extends GameObject{
 
     private final int damage;
     private final float speed;
+    final Player player;
 
-    Bullet(Vector2 position, Vector2 direction, int healthPoints, int damage, float speed) {
+    public Bullet(Vector2 position, Vector2 direction, int healthPoints, int damage, float speed, Player player) {
         super(position, direction, healthPoints);
         this.damage = damage;
         this.speed = speed;
-        this.shape = new Rectangle2D.Float(position.getX(), position.getY(), BULLET_WIDTH, BULLET_HEIGHT);
+        this.player = player;
+        this.shape = new Rectangle2D.Float(position.getX() - (float) BULLET_WIDTH/2, position.getY() - (float) BULLET_HEIGHT/2, BULLET_WIDTH, BULLET_HEIGHT);
     }
 
     public int getDamage() {
@@ -59,7 +61,7 @@ public abstract class Bullet extends GameObject{
     }
 
     private void moveShape() {
-        shape = new Rectangle2D.Float(position.getX(), position.getY(), BULLET_WIDTH, BULLET_HEIGHT);
+        this.shape = new Rectangle2D.Float(position.getX() - (float) BULLET_WIDTH/2, position.getY() - (float) BULLET_HEIGHT/2, BULLET_WIDTH, BULLET_HEIGHT);
     }
 
     @Override
@@ -69,7 +71,7 @@ public abstract class Bullet extends GameObject{
 
     @Override
     public void collisionedWith(GameObject collisionable) {
-        collisionable.collisionedWith(this);
+        collisionable.collisionedWithBullet(this);
     }
 
     @Override
@@ -85,5 +87,9 @@ public abstract class Bullet extends GameObject{
     @Override
     public void collisionedWithAsteroid(Asteroid asteroid) {
         asteroid.updateHealth(asteroid.getHealthPoints() - damage);
+        if (asteroid.getHealthPoints() <= 0){
+            player.updatePoints(asteroid.getPoints());
+            System.out.println(player.getPoints());
+        }
     }
 }

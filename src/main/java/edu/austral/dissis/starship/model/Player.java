@@ -5,12 +5,16 @@ public class Player {
     final String name;
     private int points;
 
-    public Player(String name, int points){
+    public Player(String name){
         this.name = name;
-        this.points = points;
+        points = 0;
     }
 
     public void updatePoints(int points){
         this.points+=points;
+    }
+
+    public int getPoints(){
+        return points;
     }
 }

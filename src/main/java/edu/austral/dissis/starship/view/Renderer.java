@@ -13,6 +13,7 @@ public abstract class Renderer {
 
     PImage starshipImage;
     PImage laserBulletImage;
+    PImage defaultBulletImage;
     PImage smallAsteroidImage;
     PImage mediumAsteroidImage;
     PImage bigAsteroidImage;
@@ -25,6 +26,10 @@ public abstract class Renderer {
         draw(graphics, laserBullet, BULLET_WIDTH, BULLET_HEIGHT, laserBulletImage);
     }
 
+    public void draw(PGraphics graphics, DefaultBullet defaultBullet){
+        draw(graphics, defaultBullet, BULLET_WIDTH, BULLET_HEIGHT, defaultBulletImage);
+    }
+
     public void draw(PGraphics graphics, SmallAsteroid smallAsteroid){
         draw(graphics, smallAsteroid, SMALL_ASTEROID_WIDTH, SMALL_ASTEROID_HEIGHT, smallAsteroidImage);
     }
@@ -35,6 +40,10 @@ public abstract class Renderer {
 
     public void draw(PGraphics graphics, BigAsteroid bigAsteroid){
         draw(graphics, bigAsteroid, BIG_ASTEROID_WIDTH, BIG_ASTEROID_HEIGHT, bigAsteroidImage);
+    }
+
+    public void draw(PGraphics graphics, PlayerStats playerStats){
+        graphics.text("Points: " + playerStats.player.getPoints() + "\n" + "Life: " + playerStats.starship.getHealthPoints(), 20 ,50);
     }
 
     private void draw(PGraphics graphics, GameObject object, int width, int height, PImage image){

@@ -8,15 +8,16 @@ import java.awt.geom.Ellipse2D;
 public abstract class Asteroid extends GameObject{
 
     private final float speed;
-    private final int width, height, damage;
+    private final int width, height, damage, points;
 
-    Asteroid(Vector2 position, Vector2 direction, int healthPoints, float speed, int width, int height, int damage) {
+    public Asteroid(Vector2 position, Vector2 direction, int healthPoints, float speed, int width, int height, int damage, int points) {
         super(position, direction, healthPoints);
         this.speed = speed;
         this.damage = damage;
         this.width = width;
         this.height = height;
-        this.shape = new Ellipse2D.Float(position.getX(), position.getY(), width, height);
+        this.points = points;
+        this.shape = new Ellipse2D.Float(position.getX() - (float) width/2, position.getY() - (float) height/2, width, height);
     }
 
     public int getDamage() {
@@ -62,7 +63,7 @@ public abstract class Asteroid extends GameObject{
     }
 
     private void moveShape() {
-        shape = new Ellipse2D.Float(position.getX(), position.getY(), width, height);
+        this.shape = new Ellipse2D.Float(position.getX() - (float) width/2, position.getY() - (float) height/2, width, height);
     }
 
     @Override
@@ -78,7 +79,6 @@ public abstract class Asteroid extends GameObject{
     @Override
     public void collisionedWithStarship(Starship starship) {
         starship.updateHealth(starship.getHealthPoints() - getDamage());
-        System.out.println(starship.getHealthPoints());
     }
 
     @Override
@@ -89,4 +89,7 @@ public abstract class Asteroid extends GameObject{
     @Override
     public void collisionedWithAsteroid(Asteroid asteroid) {}
 
+    public int getPoints() {
+        return points;
+    }
 }

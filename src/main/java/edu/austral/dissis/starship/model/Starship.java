@@ -15,11 +15,11 @@ public class Starship extends GameObject {
 
     private Weapon weapon;
 
-    public Starship (Vector2 position, Vector2 direction){
+    public Starship (Vector2 position, Vector2 direction, Player player){
         super(position, direction.asUnitary(), STARSHIP_HP);
-        this.shape = new Rectangle2D.Float(position.getX()- (float) STARSHIP_WIDTH/2, position.getY() - (float) STARSHIP_HEIGHT/2, STARSHIP_WIDTH, STARSHIP_HEIGHT);
-        weapon = new SingleWeapon(new LaserBullet(position, direction), 10);
+        this.shape = new Rectangle2D.Float(position.getX() - (float) STARSHIP_WIDTH/2, position.getY() - (float) STARSHIP_HEIGHT/2, STARSHIP_WIDTH, STARSHIP_HEIGHT);
         this.speed = STARSHIP_SPEED;
+        this.weapon = new SingleWeapon(new DefaultBullet(position, direction, player));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Starship extends GameObject {
     }
 
     private void moveShape() {
-        shape = new Rectangle2D.Float(position.getX()- (float) STARSHIP_WIDTH/2, position.getY() - (float) STARSHIP_HEIGHT/2, STARSHIP_WIDTH, STARSHIP_HEIGHT);
+        this.shape = new Rectangle2D.Float(position.getX() - (float) STARSHIP_WIDTH/2, position.getY() - (float) STARSHIP_HEIGHT/2, STARSHIP_WIDTH, STARSHIP_HEIGHT);
     }
 
     @Override

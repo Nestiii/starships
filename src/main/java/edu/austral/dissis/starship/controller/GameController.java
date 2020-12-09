@@ -3,25 +3,40 @@ package edu.austral.dissis.starship.controller;
 import edu.austral.dissis.starship.base.collision.CollisionEngine;
 import edu.austral.dissis.starship.base.collision.Collisionable;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.model.Asteroid;
-import edu.austral.dissis.starship.model.Bullet;
-import edu.austral.dissis.starship.model.GameObject;
+import edu.austral.dissis.starship.model.*;
 import edu.austral.dissis.starship.view.GameRenderer;
+import edu.austral.dissis.starship.view.PlayerStats;
 import edu.austral.dissis.starship.view.Rendereable;
 
+import static edu.austral.dissis.starship.constants.ControllerConstants.KET_SET_A;
 import static edu.austral.dissis.starship.constants.ShapeConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Set;
 
-public class GameController {
+public class GameController{
 
     private static final CollisionEngine collisionEngine = new CollisionEngine();
     private final AsteroidSpawner asteroidSpawner = new AsteroidSpawner();
     private long lastAsteroid = 0;
     private static final List<Collisionable<GameObject>> collisionables = new ArrayList<>();
     private static final List<Collisionable<GameObject>> toRemoveCollisionables = new ArrayList<>();
+    private final PlayerController playerAController;
+
+    public GameController(){
+        Player playerA = new Player("Player A");
+        Starship starshipA = new Starship(Vector2.vector(400, 400), Vector2.vector(0, -1), playerA);
+        PlayerStats playerStatsA = new PlayerStats(starshipA, playerA);
+        GameRenderer.addToRender(playerStatsA);
+        GameRenderer.addToRender(starshipA);
+        addCollisionable(starshipA);
+        playerAController = new PlayerController(KET_SET_A, playerA, starshipA);
+    }
+
+    public void handleKeyPress(Set<Integer> keySet){
+        keySet.forEach(playerAController::handleKeyPress);
+    }
 
     public static void addCollisionable(Collisionable<GameObject> collisionable){
         collisionables.add(collisionable);
@@ -39,6 +54,10 @@ public class GameController {
 
     public static void checkCollisions() {
         collisionEngine.checkCollisions(asCollisionables());
+    }
+
+    public void updatePLayers(){
+        playerAController.updatePlayer();
     }
 
     private static List<Collisionable> asCollisionables(){

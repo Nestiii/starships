@@ -18,15 +18,10 @@ public class SmallAsteroid extends Asteroid{
                 SMALL_ASTEROID_SPEED,
                 SMALL_ASTEROID_WIDTH,
                 SMALL_ASTEROID_HEIGHT,
-                SMALL_ASTEROID_DMG
+                SMALL_ASTEROID_DMG,
+                SMALL_ASTEROID_POINTS
         );
     }
-
-    @Override
-    public void collisionedWithStarship(Starship starship) {}
-
-    @Override
-    public void collisionedWith(GameObject collisionable) {}
 
     @Override
     public void draw(PGraphics graphics, Renderer renderer) {

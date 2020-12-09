@@ -1,8 +1,7 @@
 package edu.austral.dissis.starship.controller;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.model.Player;
-import edu.austral.dissis.starship.model.Starship;
+import edu.austral.dissis.starship.model.*;
 
 import java.util.Map;
 
@@ -25,7 +24,6 @@ public class PlayerController implements KeyHandler{
     @Override
     public void handleKeyPress(int keyCode) {
         if(keyMap.containsKey(keyCode)){
-            System.out.println(keyMap.get(keyCode));
             switch (keyMap.get(keyCode)){
                 case MOVE_FORWARD:
                     if (canMove(starship, Vector2.vector(0, -1))) starship.moveForward(STARSHIP_SPEED);
@@ -56,5 +54,15 @@ public class PlayerController implements KeyHandler{
 
     public Starship getStarship() {
         return starship;
+    }
+
+    public void updatePlayer(){
+        if (player.getPoints() > 1000) starship.changeWeapon(new DoubleWeapon(new DefaultBullet(starship.getPosition(), starship.getDirection(), player)));
+        if (player.getPoints() > 2000) starship.changeWeapon(new SingleWeapon(new LaserBullet(starship.getPosition(), starship.getDirection(), player)));
+        if (player.getPoints() > 3000) starship.changeWeapon(new DoubleWeapon(new LaserBullet(starship.getPosition(), starship.getDirection(), player)));
+    }
+
+    public void updatePlayerPoints(int points){
+        player.updatePoints(points);
     }
 }
